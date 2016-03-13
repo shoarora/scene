@@ -1,0 +1,38 @@
+body {
+    min-width: 300px;
+}
+
+.tabs {
+    margin-left: 20px;
+}
+
+.sceneName {
+    margin-left: 10px;
+}
+
+.listdemoListControls {
+  /* Add some right padding so that the text doesn't overlap the buttons */ }
+  .listdemoListControls md-divider {
+    margin-top: 0;
+    margin-bottom: 0; }
+  .listdemoListControls md-list {
+    padding-top: 0; }
+  .listdemoListControls md-list-item > p,
+  .listdemoListControls md-list-item > ._md-list-item-inner > p,
+  .listdemoListControls md-list-item ._md-list-item-inner > p,
+  .listdemoListControls md-list-item ._md-list-item-inner > ._md-list-item-inner > p {
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Likely future */ }
+  .listdemoListControls .secondary-button-padding p {
+    padding-right: 100px; }
+
+/*
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+*/

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>List Controls</title>
+    <link rel="stylesheet" href="css/font.css">
+    <link rel='stylesheet prefetch' href='css/angular-material.css'>
+    <link rel='stylesheet prefetch' href='css/docs.css'>
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="js/lib/angular.js"></script>
+    <script src="js/lib/checklist-model.js"></script>
+    <script src="js/lib/angular-animate.min.js"></script>
+    <script src="js/lib/angular-route.min.js"></script>
+    <script src="js/lib/angular-aria.min.js"></script>
+    <script src="js/lib/angular-messages.min.js"></script>
+    <script src="js/lib/svg-assets-cache.js"></script>
+    <script src="js/lib/angular-material.js"></script>
+
+  </head>
+
+  <body>
+
+    <md-list ng-controller="ListCtrl" ng-cloak="" class="listdemoListControls" class="md-dense" ng-app="MyApp" ng-init="getScenes()" ng-csp>
+
+      <md-toolbar layout="row" class="md-hue-2">
+        <div class="md-toolbar-tools">
+          <span>Scene</span>
+        </div>
+      </md-toolbar>
+
+      <md-list-item>
+        <md-button ng-click="getWindows()">Load Current Windows</md-button>
+      </md-list-item>
+
+      <md-subheader class="md-no-sticky">Scenes</md-subheader>
+
+      <md-list-item ng-repeat="key in sceneKeys">
+        <p class="sceneName">{{ key }}</p>
+        <md-button ng-click="openScene(key)">Load</md-button>
+        <md-button ng-click="deleteScene(key)">Delete</md-button>
+      </md-list-item>
+
+      <md-subheader class="md-no-sticky">Save A Scene</md-subheader>
+
+      <md-list-item>
+          <md-input-container>
+            <label>Name</label>
+             <input type="text" ng-model="saveName" required md-maxlength="20">
+          </md-input-container>
+        <md-button ng-click="saveScene()">Save</md-button>
+      </md-list-item>
+
+      <div ng-repeat="window in windows">
+          <md-list-item>
+            <md-button>Window {{ $index + 1}}</md-button>
+          </md-list-item>
+          <div class="tabs">
+            <md-list-item ng-repeat="tab in window.tabs">
+              <md-checkbox checklist-model="curScene" checklist-value="tab.url"></md-checkbox>
+              <p>{{ tab.title }}</p>
+            </md-list-item>
+          </div>
+      </div>
+
+      <!--<md-list-item ng-repeat="topping in toppings">
+        <p> {{ topping.name }} </p>
+        <md-checkbox ng-model="topping.wanted"></md-checkbox>
+    </md-list-item>-->
+
+
+    </md-list>
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved.
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+-->
+    <!--<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-animate.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-aria.min.js'></script>
+<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-messages.min.js'></script>
+<script src='http://ngmaterial.assets.s3.amazonaws.com/svg-assets-cache.js'></script>
+<script src='https://cdn.gitcdn.link/cdn/angular/bower-material/v1.1.0-rc1/angular-material.js'></script>-->
+
+
+        <script src="js/index.js"></script>
+
+
+
+
+  </body>
+</html>
