@@ -2,25 +2,36 @@ body {
     min-width: 300px;
 }
 
-.tabs {
-    margin-left: 20px;
+md-toolbar {
+    margin-top: -10px;
 }
+
+md-toast {
+    margin-left: 100px;
+    height: 51px;
+    width: 200px;
+}
+
+
 
 .sceneName {
     margin-left: 10px;
 }
 
-.listdemoListControls {
+.scene-dom {
   /* Add some right padding so that the text doesn't overlap the buttons */ }
-  .listdemoListControls md-divider {
+.scene-dom md-icon {
+    color: blue;
+}
+  .scene-dom md-divider {
     margin-top: 0;
     margin-bottom: 0; }
-  .listdemoListControls md-list {
+  .scene-dom md-list {
     padding-top: 0; }
-  .listdemoListControls md-list-item > p,
-  .listdemoListControls md-list-item > ._md-list-item-inner > p,
-  .listdemoListControls md-list-item ._md-list-item-inner > p,
-  .listdemoListControls md-list-item ._md-list-item-inner > ._md-list-item-inner > p {
+  .scene-dom md-list-item > p,
+  .scene-dom md-list-item > ._md-list-item-inner > p,
+  .scene-dom md-list-item ._md-list-item-inner > p,
+  .scene-dom md-list-item ._md-list-item-inner > ._md-list-item-inner > p {
     -webkit-user-select: none;
     /* Chrome all / Safari all */
     -moz-user-select: none;
@@ -29,7 +40,7 @@ body {
     /* IE 10+ */
     user-select: none;
     /* Likely future */ }
-  .listdemoListControls .secondary-button-padding p {
+  .scene-dom .secondary-button-padding p {
     padding-right: 100px; }
 
 /*

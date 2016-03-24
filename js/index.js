@@ -1,73 +1,90 @@
-angular.module('MyApp',['ngMaterial', ,'checklist-model', 'ngMessages', 'material.svgAssetsCache'])
-.config(function($mdThemingProvider) {
-  $mdThemingProvider.theme('default')
-    .primaryPalette('indigo')
-    .accentPalette('blue-grey');
-})
-.controller('ListCtrl', function($scope, $mdDialog) {
-  $scope.toppings = [
-    { name: 'Pepperoni', wanted: false },
-    { name: 'Sausage', wanted: false },
-    { name: 'Black Olives', wanted: false },
-    { name: 'Green Peppers', wanted: false }
-  ];
+angular.module('scene', ['ngMaterial', , 'checklist-model', 'ngMessages', 'material.svgAssetsCache'])
+    .config(function($mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+            .primaryPalette('indigo')
+            .accentPalette('yellow');
+    })
 
-  $scope.windows = [];
-  $scope.curScene = [];
-  $scope.saveName = null;
-  $scope.scenes = null;
-  $scope.sceneKeys = null;
+.controller('scenectrl', function($scope, $mdDialog, $mdToast) {
 
-  $scope.printCurScene = function() {
-      for (var i = 0; i < $scope.curScene.length; i++) {
-          console.log($scope.curScene[i]);
-      }
-  };
+    $scope.windows = [];
+    $scope.curScene = [];
+    $scope.saveName = "";
+    $scope.scenes = null;
+    $scope.sceneKeys = null;
+    $scope.tabIndex = 0;
 
-  $scope.getWindows = function() {
-    var queryInfo = {
-      populate: true
+    $scope.showSimpleToast = function(text) {
+        $mdToast.show(
+            $mdToast.simple()
+            .textContent(text)
+            .position('top right')
+            .parent("md-toolbar")
+            .hideDelay(3000)
+        );
     };
-    chrome.windows.getAll(queryInfo, function(windows) {
-      $scope.windows = windows;
-      for (var i = 0; i < $scope.windows.length; i++) {
-          console.log($scope.windows[0].tabs[0].url);
-      }
-    });
-  };
 
-  $scope.getScenes = function() {
-    chrome.storage.sync.get(null, function(items) {
-      $scope.scenes = items;
-      $scope.sceneKeys = Object.keys($scope.scenes);
-
-    });
-  };
-
-  $scope.openScene = function(key) {
-    var scene = $scope.scenes[key];
-    var createData = {
-      url: scene
+    $scope.selectAll = function(index) {
+        i = $scope.windows[index];
+        keys = Object.keys(i);
+        $scope.curScene = keys;
     };
-    chrome.windows.create(createData);
-  };
 
-  $scope.deleteScene = function(key) {
-      chrome.storage.sync.remove(key, function () {
-          $scope.getScenes();
-      });
-  };
+    $scope.getWindows = function() {
+        var queryInfo = {
+            populate: true
+        };
+        chrome.windows.getAll(queryInfo, function(windows) {
+            $scope.windows = [];
+            //turn each window into object where key is url and value is title
+            for (var i = 0; i < windows.length; i++) {
+                pairs = {};
+                for (var j = 0; j < windows[i].tabs.length; j++) {
+                    key = windows[i].tabs[j].url;
+                    value = windows[i].tabs[j].title;
+                    pairs[key] = value;
+                }
+                $scope.windows.push(pairs);
+            }
+        });
+    };
 
-  $scope.saveScene = function() {
-    var key = $scope.saveName;
-    console.log($scope.saveName);
-    var value = $scope.curScene;
-    var items = {};
-    items[key] = value;
-    chrome.storage.sync.set(items, function() {
-        $scope.getScenes();
-    });
-  };
+    $scope.getScenes = function() {
+        chrome.storage.sync.get(null, function(items) {
+            $scope.scenes = items;
+            $scope.sceneKeys = Object.keys($scope.scenes);
+        });
+    };
+
+    $scope.openScene = function(key) {
+        var scene = $scope.scenes[key];
+        var createData = {
+            url: scene
+        };
+        chrome.windows.create(createData);
+    };
+
+    $scope.deleteScene = function(key) {
+        chrome.storage.sync.remove(key, function() {
+            $scope.showSimpleToast("Deleted " + key);
+            $scope.getScenes();
+        });
+    };
+
+    $scope.saveScene = function() {
+        if ($scope.saveName === "" || $scope.curScene == []) {
+            return;
+        }
+        var key = $scope.saveName;
+        var value = $scope.curScene;
+        var items = {};
+        items[key] = value;
+        chrome.storage.sync.set(items, function() {
+            $scope.showSimpleToast("Saved " + key);
+            $scope.getScenes();
+            $scope.saveName = "";
+        });
+    };
 });
 
 
