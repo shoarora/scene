@@ -23,7 +23,7 @@ You can save a whole window, just one tab, or just a handful of tabs scattered a
 
 
 
-### Using this extension
+#### Using this extension
 
 If you just want this extension for use, you can use the scene.crx file included in the repo.
 
