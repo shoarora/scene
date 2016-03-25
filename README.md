@@ -25,6 +25,8 @@ You can save a whole window, just one tab, or just a handful of tabs scattered a
 
 ### Using this extension
 
-If you just want this extension for use, you can use the scene.crx file included in the repo.  If you want to play with the code, you can add it as an unpacked extension.
+If you just want this extension for use, you can use the scene.crx file included in the repo.  
+
+If you want to play with the code, you can add it as an unpacked extension.
 
 Instructions for both methods are [here](http://superuser.com/questions/247651/how-does-one-install-an-extension-for-chrome-browser-from-the-local-file-system).
