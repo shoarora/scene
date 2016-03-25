@@ -30,3 +30,14 @@ If you just want this extension for use, you can use the scene.crx file included
 If you want to play with the code, you can add it as an unpacked extension.
 
 Instructions for both methods are [here](http://superuser.com/questions/247651/how-does-one-install-an-extension-for-chrome-browser-from-the-local-file-system).
+
+
+### Potential todos:
+
+deselect all
+
+order scenes
+
+search bar for scenes
+
+import/export features
