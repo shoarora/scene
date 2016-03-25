@@ -27,7 +27,6 @@ angular.module('scene', ['ngMaterial', , 'checklist-model', 'ngMessages', 'mater
     $scope.selectAll = function(index) {
         i = $scope.windows[index];
         keys = Object.keys(i);
-        console.log(keys);
         if (keys[keys.length - 1] == '$$hashKey') {
             keys.pop();
         }
@@ -76,7 +75,7 @@ angular.module('scene', ['ngMaterial', , 'checklist-model', 'ngMessages', 'mater
     };
 
     $scope.saveScene = function() {
-        if ($scope.saveName === "" || $scope.curScene == []) {
+        if ($scope.saveName === "" || $scope.curScene.length === 0) {
             return;
         }
         var key = $scope.saveName;
