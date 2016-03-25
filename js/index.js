@@ -27,6 +27,10 @@ angular.module('scene', ['ngMaterial', , 'checklist-model', 'ngMessages', 'mater
     $scope.selectAll = function(index) {
         i = $scope.windows[index];
         keys = Object.keys(i);
+        console.log(keys);
+        if (keys[keys.length - 1] == '$$hashKey') {
+            keys.pop();
+        }
         $scope.curScene = keys;
     };
 
