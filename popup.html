@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head>
+  <head>
     <meta charset="UTF-8">
     <title>scene</title>
 
@@ -24,75 +24,75 @@
     <!-- Angular App Script -->
     <script src="js/index.js"></script>
 
-</head>
+  </head>
 
-
-<body>
+  <body>
 
     <md-list ng-controller="scenectrl" ng-cloak="" class="scene-dom" class="md-dense" ng-app="scene" ng-init="getScenes()" ng-csp>
 
-        <md-toolbar layout="row" class="md-hue-2">
-            <div class="md-toolbar-tools">
-                <span>scene</span>
+      <md-toolbar layout="row" class="md-hue-2">
+        <div class="md-toolbar-tools">
+          <span>scene</span>
+        </div>
+      </md-toolbar>
+
+      <md-tabs md-selected="tabIndex" md-dynamic-height="" class="md-primary">
+        <md-tab id="tab1" md-on-deselect="getWindows()">
+          <md-tab-label>Load</md-tab-label>
+          <md-tab-body>
+            <!-- Saved Scenes -->
+            <md-subheader class="md-no-sticky">Saved Scenes</md-subheader>
+            <md-list-item ng-repeat="key in sceneKeys">
+              <p class="sceneName">{{ key }}</p>
+              <md-button class="md-icon-button md-mini md-primary" ng-click="openScene(key)">
+                <md-icon md-svg-src="svg/ic_open_in_new_24px.svg"></md-icon>
+              </md-button>
+              <md-button class="md-icon-button md-mini md-primary" ng-click="deleteScene(key)">
+                <md-icon md-svg-src="svg/ic_delete_24px.svg"></md-icon>
+              </md-button>
+            </md-list-item>
+          </md-tab-body>
+        </md-tab>
+        <md-tab id="tab2">
+          <md-tab-label>New</md-tab-label>
+          <md-tab-body>
+            <md-subheader class="md-no-sticky">Save A Scene</md-subheader>
+            <!-- Save Module -->
+            <md-list-item>
+              <form>
+                <md-input-container>
+                  <label>Scene Name</label>
+                  <input type="text" ng-model="saveName">
+                </md-input-container>
+                <md-button ng-click="saveScene()" type=submit class="md-icon-button md-mini md-primary">
+                  <md-icon md-svg-src="svg/ic_done_24px.svg"></md-icon>
+                  <md-tooltip>
+                    Save
+                  </md-tooltip>
+                </md-button>
+              </form>
+            </md-list-item>
+            <!-- Checklist of Windows -->
+            <div ng-repeat="window in windows">
+              <md-list-item>
+                <md-button ng-click="selectAll($index)">Select All</md-button>
+
+                <p class="windowname">
+                  Window
+                  {{ $index + 1}}
+                </p>
+              </md-list-item>
+              <div class="tabs">
+                <md-list-item ng-repeat="(url, title) in window">
+                  <md-checkbox checklist-model="curScene" checklist-value="url"></md-checkbox>
+                  <p>{{ title }}</p>
+                </md-list-item>
+              </div>
             </div>
-        </md-toolbar>
-
-        <md-tabs md-selected="tabIndex" md-dynamic-height="" class="md-primary">
-            <md-tab id="tab1" md-on-deselect="getWindows()">
-                <md-tab-label>Load</md-tab-label>
-                <md-tab-body>
-                    <!-- Saved Scenes -->
-                    <md-subheader class="md-no-sticky">Saved Scenes</md-subheader>
-                    <md-list-item ng-repeat="key in sceneKeys">
-                        <p class="sceneName">{{ key }}</p>
-                        <md-button class="md-icon-button md-mini md-primary" ng-click="openScene(key)">
-                            <md-icon md-svg-src="svg/ic_open_in_new_24px.svg"></md-icon>
-                        </md-button>
-                        <md-button class="md-icon-button md-mini md-primary" ng-click="deleteScene(key)">
-                            <md-icon md-svg-src="svg/ic_delete_24px.svg"></md-icon>
-                        </md-button>
-                    </md-list-item>
-                </md-tab-body>
-            </md-tab>
-            <md-tab id="tab2">
-                <md-tab-label>New</md-tab-label>
-                <md-tab-body>
-                    <md-subheader class="md-no-sticky">Save A Scene</md-subheader>
-                    <!-- Save Module -->
-                    <md-list-item>
-                        <form>
-                            <md-input-container>
-                                <label>Scene Name</label>
-                                <input type="text" ng-model="saveName">
-                            </md-input-container>
-                            <md-button ng-click="saveScene()" type=submit class="md-icon-button md-mini md-primary">
-                                <md-icon md-svg-src="svg/ic_done_24px.svg"></md-icon>
-                                <md-tooltip>
-                                    Save
-                                </md-tooltip>
-                            </md-button>
-                        </form>
-                    </md-list-item>
-                    <!-- Checklist of Windows -->
-                    <div ng-repeat="window in windows">
-                        <md-list-item>
-                            <md-button ng-click="selectAll($index)">Select All</md-button>
-
-                            <p class="windowname">
-                                Window {{ $index + 1}}
-                            </p>
-                        </md-list-item>
-                        <div class="tabs">
-                            <md-list-item ng-repeat="(url, title) in window">
-                                <md-checkbox checklist-model="curScene" checklist-value="url"></md-checkbox>
-                                <p>{{ title }}</p>
-                            </md-list-item>
-                        </div>
-                    </div>
-                </md-tab-body>
-            </md-tab>
-        </md-tabs>
+          </md-tab-body>
+        </md-tab>
+      </md-tabs>
     </md-list>
-</body>
+  </body>
 
 </html>

@@ -1,9 +1,12 @@
 Potential todos:
 
+settings tab containing the following:
+    save scenes to local file
+    search bar for scenes
+
+
 deselect all
 
 order scenes
-
-search bar for scenes
 
 import/export features
